@@ -88,6 +88,35 @@ a)  Load the `pixar_films` dataset into R. Clean the dataset by removing
     films without a title. Inspect the variable `film_rating`. What are
     the possible values and what do they mean? Create a factor variable
     for the film rating. Why is this appropriate?
+    
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+library(tidyverse)
+
+pixar_films <- read_csv("pixar_films.csv")
+
+pixar_films_clean <- pixar_films %>%
+  filter(!is.na(film) & film != "")
+
+unique(pixar_films_clean$film_rating)
+table(pixar_films_clean$film_rating)
+
+pixar_films_clean <- pixar_films_clean %>%
+  mutate(film_rating_factor = factor(film_rating))
+
+levels(pixar_films_clean$film_rating_factor)
+```
+The possible values for film_rating are: "G", "N/A", "PG"
+These are MPAA (Motion Picture Association of America) film ratings:
+- G: General Audiences (all ages admitted)
+- PG: Parental Guidance Suggested (some material may not be suitable for children)
+- N/A: Not Available/Not Rated
+
+Creating a factor variable is appropriate because:
+1. Film ratings are categorical data with a limited set of discrete values
+2. They have a natural ordering (G < PG in terms of content restrictions)
+3. Factors prevent typos and ensure data consistency
+
+    
 
 <!-- -->
 
