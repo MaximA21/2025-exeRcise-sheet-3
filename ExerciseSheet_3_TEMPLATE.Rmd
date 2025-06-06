@@ -3,7 +3,7 @@ title: "Exercise #3"
 subtitle: "Fortgeschrittene Statistische Software für NF"
 author: "Maxim Akishin"
 date: "`r Sys.Date()`"
-output: distill::distill_article
+output: html_document
 ---
 
 ## General Remarks
