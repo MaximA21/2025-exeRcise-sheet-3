@@ -164,10 +164,27 @@ This exercise is a bit more open-ended. You can choose any dataset from [Our Wor
 
 a)  Go to <https://github.com/owid/owid-datasets/tree/master/datasets> and choose a dataset that interests you. You can have a look at <https://ourworldindata.org/> to gather some inspiration.
 b)  Download the dataset and track it in git.
+
+```{r echo=TRUE}
+us_internet_data <- data.frame(
+  Entity = rep("United States", 20),
+  Year = c(2000:2016, 2018, 2019, 2021),
+  `18-29` = c(70,72,76,78,77,83,86,89,89,92,92,94,96,97,97,97,99,98,100,99),
+  `30-49` = c(61,65,70,72,75,79,82,85,84,84,85,87,91,92,92,95,96,97,97,98),
+  `50-64` = c(46,50,54,56,61,66,70,71,72,75,74,77,79,81,81,82,87,87,88,96),
+  `65+` = c(14,14,18,22,24,28,32,35,38,40,43,46,54,56,57,63,64,66,73,75)
+)
+
+colnames(us_internet_data) <- c("Entity", "Year", "Age_18_29", "Age_30_49", "Age_50_64", "Age_65_plus")
+
+write_csv(us_internet_data, "us_internet_by_age.csv")
+```
+
+
 c)  Put the name / title of the dataset and a link to it below.
 
--   Dataset Name: ...
--   Link: <https://github.com/owid/owid-datasets/>...
+-   Dataset Name: Internet use in the US by age
+-   Link: <https://github.com/owid/owid-datasets/commit/6a57ed9d32e380e2d315683bda4c8eba19fee108> someone removed the data but could be recovered through commit
 
 d)  Come up with a (research) question you want to answer with the data and briefly explain why you believe this is an interesting question within one sentence. It should be a question that can be answered with the dataset and using R.
 e)  Use R to answer your chosen question. Please limit your analysis to the functions and techniques we have covered so far in the course. You are **not expected** to use advanced statistical models or external packages which haven't been introduced.
