@@ -135,6 +135,28 @@ d)  Choose one of the variables representing the public response and create a ba
     -   A title and axis labels for context.
 
     What do you notice when comparing the scores of the films in a series? Do you see any patterns?
+    
+```{r echo=TRUE}
+library(ggplot2)
+
+series_films <- merged_data %>%
+  inner_join(film_series, by = c("film" = "film_title")) %>%
+  arrange(series, release_date) %>%
+  mutate(film = factor(film, levels = film))
+
+ggplot(series_films, aes(x = series, y = rotten_tomatoes, fill = film)) +
+  geom_col(position = "dodge") +
+  labs(
+    title = "Rotten Tomatoes Scores for Pixar Film Series",
+    x = "Film Series", 
+    y = "Rotten Tomatoes Score (%)",
+    fill = "Film"
+  ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+Most Pixar film series show a declining pattern in Rotten Tomatoes scores over time, suggesting typical "sequel fatigue." Cars demonstrates the most dramatic decline, with Cars 2 dropping to just 40% from the original's 74%. Toy Story is the notable exception, maintaining consistently excellent scores (97-100%) across all four films. This pattern suggests that while creating quality sequels is challenging for most franchises, it's possible to maintain excellence with careful execution.
+    
 
 ## Exercise 4: Open Analysis (4 points)
 
