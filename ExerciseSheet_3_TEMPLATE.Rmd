@@ -187,7 +187,18 @@ c)  Put the name / title of the dataset and a link to it below.
 -   Link: <https://github.com/owid/owid-datasets/commit/6a57ed9d32e380e2d315683bda4c8eba19fee108> someone removed the data but could be recovered through commit
 
 d)  Come up with a (research) question you want to answer with the data and briefly explain why you believe this is an interesting question within one sentence. It should be a question that can be answered with the dataset and using R.
+
+Research Question: How has the digital divide between different age groups in the US evolved over time, and which age group showed the fastest adoption rate?
+
+This is an interesting question because it examines whether younger generations have maintained their technology advantage or if older generations have been catching up, which has important implications for digital inclusion policies and understanding generational technology adoption patterns.
+
 e)  Use R to answer your chosen question. Please limit your analysis to the functions and techniques we have covered so far in the course. You are **not expected** to use advanced statistical models or external packages which haven't been introduced.
+
+```{r echo=TRUE}
+
+```
+
+
 f)  Create a meaningful plot / figure with the dataset. Make sure to provide a figure caption (via the chunk options / Rmarkdown) and correctly label the figure.
 
 ## Final Note
