@@ -195,7 +195,31 @@ This is an interesting question because it examines whether younger generations 
 e)  Use R to answer your chosen question. Please limit your analysis to the functions and techniques we have covered so far in the course. You are **not expected** to use advanced statistical models or external packages which haven't been introduced.
 
 ```{r echo=TRUE}
+# Transform data to long format for easier analysis
+us_internet_long <- us_internet_data %>%
+  pivot_longer(cols = starts_with("Age_"), 
+               names_to = "Age_Group", 
+               values_to = "Internet_Usage_Percent") %>%
+  mutate(Age_Group = case_when(
+    Age_Group == "Age_18_29" ~ "18-29",
+    Age_Group == "Age_30_49" ~ "30-49", 
+    Age_Group == "Age_50_64" ~ "50-64",
+    Age_Group == "Age_65_plus" ~ "65+"
+  ))
 
+
+growth_summary <- us_internet_long %>%
+  group_by(Age_Group) %>%
+  summarise(
+    Usage_2000 = first(Internet_Usage_Percent),
+    Usage_2021 = last(Internet_Usage_Percent),
+    Growth_Points = Usage_2021 - Usage_2000,
+    Growth_Rate_Percent = round((Usage_2021 - Usage_2000) / Usage_2000 * 100, 1),
+    .groups = 'drop'
+  ) %>%
+  arrange(desc(Growth_Rate_Percent))
+
+growth_summary
 ```
 
 
